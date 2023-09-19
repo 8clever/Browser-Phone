@@ -6,6 +6,7 @@
 - dev environment
 - docker compose
 - docker image
+- added version of phone.js?ver=
 
 # Browser Phone
 

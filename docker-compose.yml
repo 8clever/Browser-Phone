@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+  app:
+    image: nginx:alpine
+    volumes:
+      - ./Phone:/usr/share/nginx/html
+    ports:
+      - 3000:80

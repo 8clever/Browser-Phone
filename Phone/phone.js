@@ -1801,7 +1801,7 @@ function PreloadAudioFiles(){
 function CreateUserAgent() {
     console.log("Creating User Agent...");
     if(SipDomain==null || SipDomain=="" || SipDomain=="null" || SipDomain=="undefined") SipDomain = wssServer; // Sets globally
-    const secure = location.protocol.at(-1) === "s"
+    const secure = location.protocol === "https";
     const proto = 'ws' + (secure ? "s" : "");
     var options = {
         uri: SIP.UserAgent.makeURI("sip:"+ SipUsername + "@" + SipDomain),

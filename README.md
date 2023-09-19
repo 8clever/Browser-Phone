@@ -1,3 +1,12 @@
+### Fork from Innovate Asterisk
+## Changes
+- Remove Server PORT
+- Now Server Address should include PORT if exists
+- dynamic ws/wss protocol
+- dev environment
+- docker compose
+- docker image
+
 # Browser Phone
 
 A fully featured browser based WebRTC SIP phone for Asterisk

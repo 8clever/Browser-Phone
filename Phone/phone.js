@@ -1596,7 +1596,7 @@ function InitUi(){
     // WebRTC Error Page
     $("#WebRtcFailed").on('click', function(){
         Confirm(lang.error_connecting_web_socket, lang.web_socket_error, function(){
-            window.open(`${location.protocol}://${wssServer}/httpstatus`);
+            window.open(`${location.protocol}//${wssServer}/httpstatus`);
         }, null);
     });
 
@@ -1801,7 +1801,7 @@ function PreloadAudioFiles(){
 function CreateUserAgent() {
     console.log("Creating User Agent...");
     if(SipDomain==null || SipDomain=="" || SipDomain=="null" || SipDomain=="undefined") SipDomain = wssServer; // Sets globally
-    const secure = location.protocol === "https";
+    const secure = location.protocol === "https:";
     const proto = 'ws' + (secure ? "s" : "");
     var options = {
         uri: SIP.UserAgent.makeURI("sip:"+ SipUsername + "@" + SipDomain),

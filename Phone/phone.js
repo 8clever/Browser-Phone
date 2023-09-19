@@ -80,7 +80,6 @@ let wallpaperDark = getDbItem("wallpaperDark", "wallpaper.dark.webp");     // Wa
 let profileUserID = getDbItem("profileUserID", null);   // Internal reference ID. (DON'T CHANGE THIS!)
 let profileName = getDbItem("profileName", null);       // eg: Keyla James
 let wssServer = getDbItem("wssServer", null);           // eg: raspberrypi.local
-let WebSocketPort = getDbItem("WebSocketPort", null);   // eg: 444 | 4443
 let ServerPath = getDbItem("ServerPath", null);         // eg: /ws
 let SipDomain = getDbItem("SipDomain", null);           // eg: raspberrypi.local
 let SipUsername = getDbItem("SipUsername", null);       // eg: webrtc
@@ -490,7 +489,6 @@ $(document).ready(function () {
     if(options.wallpaperLight !== undefined) wallpaperLight = options.wallpaperLight;
     if(options.wallpaperDark !== undefined) wallpaperDark = options.wallpaperDark;
     if(options.wssServer !== undefined) wssServer = options.wssServer;
-    if(options.WebSocketPort !== undefined) WebSocketPort = options.WebSocketPort;
     if(options.ServerPath !== undefined) ServerPath = options.ServerPath;
     if(options.SipDomain !== undefined) SipDomain = options.SipDomain;
     if(options.SipUsername !== undefined) SipUsername = options.SipUsername;
@@ -1598,7 +1596,7 @@ function InitUi(){
     // WebRTC Error Page
     $("#WebRtcFailed").on('click', function(){
         Confirm(lang.error_connecting_web_socket, lang.web_socket_error, function(){
-            window.open("https://"+ wssServer +":"+ WebSocketPort +"/httpstatus");
+            window.open(`${location.protocol}://${wssServer}/httpstatus`);
         }, null);
     });
 
@@ -1803,26 +1801,18 @@ function PreloadAudioFiles(){
 function CreateUserAgent() {
     console.log("Creating User Agent...");
     if(SipDomain==null || SipDomain=="" || SipDomain=="null" || SipDomain=="undefined") SipDomain = wssServer; // Sets globally
+    const secure = location.protocol.at(-1) === "s"
+    const proto = 'ws' + (secure ? "s" : "");
     var options = {
         uri: SIP.UserAgent.makeURI("sip:"+ SipUsername + "@" + SipDomain),
         transportOptions: {
-            server: "wss://" + wssServer + ":"+ WebSocketPort +""+ ServerPath,
+            server: `${proto}://${wssServer}${ServerPath}`,
             traceSip: false,
             connectionTimeout: TransportConnectionTimeout
-            // keepAliveInterval: 30 // Uncomment this and make this any number greater then 0 for keep alive... 
-            // NB, adding a keep alive will NOT fix bad internet, if your connection cannot stay open (permanent WebSocket Connection) you probably 
-            // have a router or ISP issue, and if your internet is so poor that you need to some how keep it alive with empty packets
-            // upgrade you internet connection. This is voip we are talking about here.
         },
         sessionDescriptionHandlerFactoryOptions: {
             peerConnectionConfiguration :{
                 bundlePolicy: BundlePolicy,
-                // certificates: undefined,
-                // iceCandidatePoolSize: 10,
-                // iceServers: [{ urls: "stun:stun.l.google.com:19302" }],
-                // iceTransportPolicy: "all",
-                // peerIdentity: undefined,
-                // rtcpMuxPolicy: "require",
             },
             iceGatheringTimeout: IceStunCheckTimeout
         },
@@ -1836,7 +1826,6 @@ function CreateUserAgent() {
         autoStop: true,
         register: false,
         noAnswerTimeout: NoAnswerTimeout,
-        // sipExtension100rel: // UNSUPPORTED | SUPPORTED | REQUIRED NOTE: rel100 is not supported
         contactParams: {},
         delegate: {
             onInvite: function (sip){
@@ -11658,9 +11647,6 @@ function ShowMyProfile(){
     AccountHtml += "<div class=UiText>"+ lang.asterisk_server_address +":</div>";
     AccountHtml += "<div><input id=Configure_Account_wssServer class=UiInputText type=text placeholder='"+ lang.eg_asterisk_server_address +"' value='"+ getDbItem("wssServer", "") +"'></div>";
 
-    AccountHtml += "<div class=UiText>"+ lang.websocket_port +":</div>";
-    AccountHtml += "<div><input id=Configure_Account_WebSocketPort class=UiInputText type=text placeholder='"+ lang.eg_websocket_port +"' value='"+ getDbItem("WebSocketPort", "") +"'></div>";
-
     AccountHtml += "<div class=UiText>"+ lang.websocket_path +":</div>";
     AccountHtml += "<div><input id=Configure_Account_ServerPath class=UiInputText type=text placeholder='"+ lang.eg_websocket_path +"' value='"+ getDbItem("ServerPath", "") +"'></div>";
 
@@ -11844,10 +11830,6 @@ function ShowMyProfile(){
                     console.warn("Validation Failed");
                     return;
                 } 
-                if($("#Configure_Account_WebSocketPort").val() == "") {
-                    console.warn("Validation Failed");
-                    return;
-                } 
                 if($("#Configure_Account_profileName").val() == "") {
                     console.warn("Validation Failed");
                     return;
@@ -11890,7 +11872,6 @@ function ShowMyProfile(){
             // 1 Account
             if(EnableAccountSettings){
                 localDB.setItem("wssServer", $("#Configure_Account_wssServer").val());
-                localDB.setItem("WebSocketPort", $("#Configure_Account_WebSocketPort").val());
                 localDB.setItem("ServerPath", $("#Configure_Account_ServerPath").val());
                 localDB.setItem("profileName", $("#Configure_Account_profileName").val());
                 localDB.setItem("SipDomain", $("#Configure_Account_SipDomain").val());

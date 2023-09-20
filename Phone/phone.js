@@ -79,9 +79,9 @@ let wallpaperDark = getDbItem("wallpaperDark", "wallpaper.dark.webp");     // Wa
  */
 let profileUserID = getDbItem("profileUserID", null);   // Internal reference ID. (DON'T CHANGE THIS!)
 let profileName = getDbItem("profileName", null);       // eg: Keyla James
-let wssServer = getDbItem("wssServer", null);           // eg: raspberrypi.local
-let ServerPath = getDbItem("ServerPath", null);         // eg: /ws
-let SipDomain = getDbItem("SipDomain", null);           // eg: raspberrypi.local
+let wssServer = getDbItem("wssServer", location.host);           // eg: raspberrypi.local
+let ServerPath = getDbItem("ServerPath", '/asterisk/ws');         // eg: /ws
+let SipDomain = getDbItem("SipDomain", location.host);           // eg: raspberrypi.local
 let SipUsername = getDbItem("SipUsername", null);       // eg: webrtc
 let SipPassword = getDbItem("SipPassword", null);       // eg: webrtc
 
@@ -11645,16 +11645,16 @@ function ShowMyProfile(){
     }
     var AccountHtml =  "<div id=Configure_Extension_Html style=\"display:none\">";
     AccountHtml += "<div class=UiText>"+ lang.asterisk_server_address +":</div>";
-    AccountHtml += "<div><input id=Configure_Account_wssServer class=UiInputText type=text placeholder='"+ lang.eg_asterisk_server_address +"' value='"+ getDbItem("wssServer", "") +"'></div>";
+    AccountHtml += "<div><input id=Configure_Account_wssServer class=UiInputText type=text placeholder='"+ lang.eg_asterisk_server_address +"' value='"+ wssServer +"'></div>";
 
     AccountHtml += "<div class=UiText>"+ lang.websocket_path +":</div>";
-    AccountHtml += "<div><input id=Configure_Account_ServerPath class=UiInputText type=text placeholder='"+ lang.eg_websocket_path +"' value='"+ getDbItem("ServerPath", "") +"'></div>";
+    AccountHtml += "<div><input id=Configure_Account_ServerPath class=UiInputText type=text placeholder='"+ lang.eg_websocket_path +"' value='"+ ServerPath +"'></div>";
 
     AccountHtml += "<div class=UiText>"+ lang.full_name +":</div>";
     AccountHtml += "<div><input id=Configure_Account_profileName class=UiInputText type=text placeholder='"+ lang.eg_full_name +"' value='"+ getDbItem("profileName", "") +"'></div>";
 
     AccountHtml += "<div class=UiText>"+ lang.sip_domain +":</div>";
-    AccountHtml += "<div><input id=Configure_Account_SipDomain class=UiInputText type=text placeholder='"+ lang.eg_sip_domain +"' value='"+ getDbItem("SipDomain", "") +"'></div>";
+    AccountHtml += "<div><input id=Configure_Account_SipDomain class=UiInputText type=text placeholder='"+ lang.eg_sip_domain +"' value='"+ SipDomain +"'></div>";
 
     AccountHtml += "<div class=UiText>"+ lang.sip_username +":</div>";
     AccountHtml += "<div><input id=Configure_Account_SipUsername class=UiInputText type=text placeholder='"+ lang.eg_sip_username +"' value='"+ getDbItem("SipUsername", "") +"'></div>";

@@ -7,6 +7,9 @@
 - docker compose
 - docker image
 - added version of phone.js?ver=
+- auto filled Server Address
+- auto filled WS Path
+- auto filled User Domain
 
 # Browser Phone
 

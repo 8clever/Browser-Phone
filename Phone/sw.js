@@ -36,7 +36,7 @@ const CacheItems = [
     "https://dtd6jl0d42sve.cloudfront.net/lib/jquery/jquery-ui-1.13.2.min.js",
     "https://dtd6jl0d42sve.cloudfront.net/lib/jquery/jquery.md5-min.js",
     "https://dtd6jl0d42sve.cloudfront.net/lib/Chart/Chart.bundle-2.7.2.min.js",
-    "https://dtd6jl0d42sve.cloudfront.net/lib/SipJS/sip-0.20.0.min.js",
+    "sip.js",
     "https://dtd6jl0d42sve.cloudfront.net/lib/FabricJS/fabric-2.4.6.min.js",
     "https://dtd6jl0d42sve.cloudfront.net/lib/Moment/moment-with-locales-2.24.0.min.js",
     "https://dtd6jl0d42sve.cloudfront.net/lib/Croppie/Croppie-2.6.4/croppie.min.js",

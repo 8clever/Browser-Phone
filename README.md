@@ -63,7 +63,7 @@ This web application is designed to work with Asterisk PBX. Once loaded applicat
 - Openfire XMPP Server
 
 ## JavaScript Dependencies
-- sip-0.20.0                    : WebRTC and SIP signalling library
+- sip                    : WebRTC and SIP signalling library
 - jquery-3.3.1                  : JavaScript toolkit
 - jquery.md5                    : Md5 Hash plug-in (unused)
 - Chart-2.7.2                   : Graph and Chart UI

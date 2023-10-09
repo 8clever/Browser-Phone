@@ -6,10 +6,11 @@
 - dev environment
 - docker compose
 - docker image
-- added version of phone.js?ver=
+- added query version of packets ?v=
 - auto filled Server Address
 - auto filled WS Path
 - auto filled User Domain
+- fixed sip.js grammar for avoiding many asterisk bugs
 
 # Browser Phone
 

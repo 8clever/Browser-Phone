@@ -19,15 +19,6 @@ A fully featured browser based WebRTC SIP phone for Asterisk
 ### Description
 This web application is designed to work with Asterisk PBX. Once loaded application will connect to Asterisk PBX on its web socket, and register an extension. Calls are made between contacts, and a full call detail is saved. Audio Calls can be recorded. Video Calls can be recorded, and can be saved with 5 different recording layouts and 3 different quality settings. This application does not use any cloud systems or services, and is designed to be stand-alone. Additional libraries will be downloaded at run time (but can also be saved to the web server for a complete off-line solution).
 
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png)](https://www.buymeacoffee.com/innovateast)
-
-**Hosted versions/samples**
-- https://www.innovateasterisk.com/phone/ *(Default Layout - contains a welcome screen)*
-- https://www.innovateasterisk.com/phone/responsive.html *(Responsive Sample Layout - contains ads)*
-- https://www.innovateasterisk.com/phone/popup.html *(Popup Sample Layout - contains ads)*
-
-![Buddy Stream](https://github.com/InnovateAsterisk/Browser-Phone/blob/master/Screenshots/Buddy_Stream.jpg)
-
 ## Features v0.3.x
 - SIP Audio Calling
 - SIP Video Calling
@@ -96,11 +87,7 @@ You can follow the How-to video to achieve the outcome for this project:
 
 ### chan_sip:
 
-[![View on YouTube](https://img.youtube.com/vi/mS28vfT8wJ8/0.jpg)](https://www.youtube.com/watch?v=mS28vfT8wJ8)
-
 ### chan_pjsip (Part 2):
-
-[![View on YouTube](https://img.youtube.com/vi/azWUfSBz__s/0.jpg)](https://www.youtube.com/watch?v=azWUfSBz__s)
 
 Or follow these steps.
 
